@@ -10,6 +10,10 @@ body {
 
   background-color: #eaedef;
   background-color: #ecedf0;
+  background-color: #fff;
+  color: #444c5f;
+
+  text-rendering: geometricPrecision;
 }
 
 #root {

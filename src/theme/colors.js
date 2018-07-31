@@ -131,16 +131,8 @@ export const palettes = {
 };
 
 export const colors = flatten({
-  transparent,
-  white,
-  black,
-  offwhite,
-  offblack,
-  red,
-  green,
-  yellow,
-  blue,
-  ...accents,
+  ...palettes.spectrum,
+  ...palettes.accents,
   light: flatten(light),
   dark: flatten(dark),
 });
@@ -150,13 +142,6 @@ console.log({ palettes, colors });
 ////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////   🐲   ///////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
-
-// function rgb(r, g, b, a) {
-//   return a != null
-//     ? (console.warn(`Use rgb() instead`), rgba(r, g, b, a))
-//     : // : `rgb(${r}, ${g}, ${b})`;
-//       polished.hex(r, g, b);
-// }
 
 function rgba(r, g, b, a = 1) {
   return `rgba(${r}, ${g}, ${b}, ${a})`;

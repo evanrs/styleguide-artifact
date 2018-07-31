@@ -1,10 +1,5 @@
-import styled from 'styled-components';
-
-export const SectionHeader = styled.h2`
-  margin: 1rem 0;
-
-  min-width: 100%;
-`;
+import styled, { css } from 'styled-components';
+import { colors } from '../theme';
 
 export const Section = styled.div`
   display: flex;
@@ -29,3 +24,33 @@ export const Column = styled.div`
   min-height: 100%;
   overflow: hidden;
 `;
+
+export const SectionBlock = styled.header`
+  background-color: ${({ color }) =>
+    (color && colors[color]) || colors.transparent};
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+
+  min-height: 20rem;
+  margin: 0;
+  padding: 0 2rem;
+`;
+
+export const Root = styled.div`
+  ${SectionBlock} + ${SectionBlock} {
+    margin-top: 2rem;
+  }
+`;
+
+export const Header = styled.div`
+  margin: 1rem 0 1rem;
+
+  min-width: 100%;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0;
+`;
+
+export default SectionBlock;

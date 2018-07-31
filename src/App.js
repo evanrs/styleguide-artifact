@@ -2,17 +2,14 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 import { ThemeProvider } from './theme';
-import * as theme from './theme';
-import Buttons from './story/Buttons';
-import Swatches from './story/Swatches';
 import Block from './styled/Block';
+import Story from './story';
 
 export default () => (
   <ThemeProvider type="light">
-    <Fragment>
-      <Buttons />
-      <Swatches />
-    </Fragment>
+    <React.Fragment>
+      <Story />
+    </React.Fragment>
   </ThemeProvider>
 );
 
