@@ -1,0 +1,37 @@
+{
+  "name": "life",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/.bin/react-app-rewired start",
+    "now-start": "serve --single ./build",
+    "build": "./node_modules/.bin/react-app-rewired build",
+    "test": "./node_modules/.bin/react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@evanrs/map-props": "^1.0.1",
+    "lodash": "^4.17.10",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "polished": "^1.9.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4",
+    "ress": "^1.2.2",
+    "styled-components": "^3.3.3",
+    "typeface-lato": "0.0.54",
+    "typeface-montserrat": "0.0.54"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "prettier": "^1.13.7",
+    "pretty-quick": "^1.6.0",
+    "react-app-rewire-lodash": "^2.0.0",
+    "react-app-rewire-mobx": "^1.0.8",
+    "react-app-rewire-polished": "^1.0.3",
+    "react-app-rewire-styled-components": "^3.0.2",
+    "react-app-rewire-svgr": "^1.1.1",
+    "react-app-rewired": "^1.5.2"
+  }
+}
