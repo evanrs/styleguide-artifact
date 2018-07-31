@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
+import { ThemeProvider } from './theme';
 import * as theme from './theme';
-
-import ColorBlocks from './styled/ColorBlocks';
+import Buttons from './story/Buttons';
+import Swatches from './story/Swatches';
+import Block from './styled/Block';
 
 export default () => (
-  <Root>
-    <EmojiText>{/* 🐱 */}</EmojiText>
-    <ColorBlocks />
-  </Root>
+  <ThemeProvider type="light">
+    <Fragment>
+      <Buttons />
+      <Swatches />
+    </Fragment>
+  </ThemeProvider>
 );
 
-const Root = styled.div`
+const SectionHeader = styled.h2`
+  margin: 1rem 0;
+
+  min-width: 100%;
+`;
+
+const Section = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  width: 100%;
+  height: max-content;
+  min-height: 100%;
+  padding: 0 2rem;
+  margin: 2rem 0;
+  overflow: hidden;
+`;
+
+const Column = styled.div`
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
   flex-flow: column wrap;
   width: 100%;
-  height: 100%;
+  height: max-content;
+  min-height: 100%;
+  overflow: hidden;
 `;
 
 const EmojiText = styled.span`

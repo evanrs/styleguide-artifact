@@ -1,6 +1,5 @@
 :root,
-body,
-#root {
+body {
   margin: 0;
   padding: 0;
 
@@ -11,4 +10,8 @@ body,
 
   background-color: #eaedef;
   background-color: #ecedf0;
+}
+
+#root {
+  height: 100%;
 }
