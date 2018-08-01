@@ -1,11 +1,11 @@
-import React from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import React from "react";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
-import { colors, palettes } from './colors';
+import { colors, palettes } from "./colors";
 
 export class ThemeProvider extends React.Component {
   static defaultProps = {
-    type: 'light',
+    type: "light"
   };
 
   static getDerivedStateFromProps({ type }, state) {
@@ -27,12 +27,20 @@ export class ThemeProvider extends React.Component {
 
     const current = {
       type,
-      primary,
-      secondary,
+      primary: {
+        ...primary,
+        backgroundColor: primary.base,
+        textColor: secondary.base
+      },
+      secondary: {
+        ...secondary,
+        backgroundColor: secondary.base,
+        textColor: primary.base
+      },
       backgroundColor,
       textColor,
       accents,
-      intents: {},
+      intents: {}
       // intents: {
       //   default: {
       //     backgroundColor: accents.accent.base,
@@ -52,7 +60,10 @@ export class ThemeProvider extends React.Component {
     return { ...current, [type]: current };
   }
 
-  state = {};
+  state = {
+    palettes,
+    colors
+  };
 
   render() {
     return <StyledThemeProvider {...this.props} theme={this.state} />;

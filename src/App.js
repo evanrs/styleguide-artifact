@@ -5,13 +5,38 @@ import { ThemeProvider } from './theme';
 import Block from './styled/Block';
 import Story from './story';
 
-export default () => (
-  <ThemeProvider type="light">
-    <React.Fragment>
-      <Story />
-    </React.Fragment>
-  </ThemeProvider>
-);
+export default class App extends React.Component {
+  state = {
+    themeName: 'light',
+  };
+
+  switchTheme = () =>
+    this.setState(({ themeName }) => ({
+      themeName: themeName === 'light' ? 'dark' : 'light',
+    }));
+
+  interval = true || setInterval(this.switchType, 5000);
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    const { themeName } = this.state;
+
+    return (
+      <ThemeProvider type={themeName}>
+        <Root>
+          <Story themeName={themeName} switchTheme={this.switchTheme} />
+        </Root>
+      </ThemeProvider>
+    );
+  }
+}
+
+export const Root = styled(Block)`
+  min-height: 100%;
+`;
 
 const SectionHeader = styled.h2`
   margin: 1rem 0;

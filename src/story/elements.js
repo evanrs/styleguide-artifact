@@ -1,5 +1,9 @@
+import _ from 'lodash';
 import styled, { css } from 'styled-components';
 import { colors } from '../theme';
+
+import Block from '../styled/Block';
+import { resolvesColor } from '../theme/tools';
 
 export const Section = styled.div`
   display: flex;
@@ -25,9 +29,22 @@ export const Column = styled.div`
   overflow: hidden;
 `;
 
-export const SectionBlock = styled.header`
-  background-color: ${({ color }) =>
-    (color && colors[color]) || colors.transparent};
+export const SectionBlock = styled(Block)`
+  background-color: ${({ backgroundColor: color, theme }) => {
+    color = color === true ? 'backgroundColor' : color;
+
+    return color
+      ? theme[color] || theme.colors[color] || _.get(theme, color)
+      : '';
+  }};
+
+  color: ${({ textColor: color, theme }) => {
+    color = color === true ? 'textColor' : color;
+
+    return color
+      ? theme[color] || theme.colors[color] || _.get(theme, color)
+      : '';
+  }};
 
   display: flex;
   flex-flow: column nowrap;

@@ -1,52 +1,52 @@
-import _ from 'lodash';
-import { mix, rgb } from 'polished';
+import _ from "lodash";
+import { mix, rgb } from "polished";
 
 const [WHITE, BLACK, TRANSPARENT] = [
   rgb(255, 255, 255),
   rgb(0, 0, 0),
-  rgba(255, 255, 255, 0),
+  rgba(255, 255, 255, 0)
 ];
 
 export const white = {
-  base: WHITE,
+  base: WHITE
 };
 
 export const black = {
-  base: BLACK,
+  base: BLACK
 };
 
 export const transparent = {
-  base: TRANSPARENT,
+  base: TRANSPARENT
 };
 
 export const offwhite = createPalette({
-  base: rgb(244, 246, 249),
+  base: rgb(244, 246, 249)
 });
 
 export const offblack = createPalette({
-  base: rgb(85, 93, 112),
+  base: rgb(85, 93, 112)
   // L25: mix(0.25, WHITE, rgb(85, 93, 112)),
 });
 
 export const brand = createPalette({
-  base: rgb(42, 87, 141),
+  base: rgb(42, 87, 141)
 });
 
 export const blue = createPalette({
-  base: rgb(81, 147, 253),
+  base: rgb(81, 147, 253)
 });
 
 export const red = createPalette({
-  base: rgb(255, 53, 66),
+  base: rgb(255, 53, 66)
 });
 
 export const yellow = createPalette({
-  base: rgb(255, 184, 40),
+  base: rgb(255, 184, 40)
   // L1: rgb(241, 193, 109),
 });
 
 export const green = createPalette({
-  base: rgb(0, 205, 130),
+  base: rgb(0, 205, 130)
 });
 
 export const light = {
@@ -55,7 +55,7 @@ export const light = {
     1: blue.L95,
     2: blue.L9,
     3: blue.L8,
-    4: blue.L7,
+    4: blue.L7
   },
   secondary: {
     base: offblack.base,
@@ -63,8 +63,8 @@ export const light = {
     // 2: offblack.L25,
     2: mix(0.25, WHITE, offblack.base),
     3: offblack.D4,
-    4: offblack.L5,
-  },
+    4: offblack.L5
+  }
 };
 
 export const dark = {
@@ -73,43 +73,43 @@ export const dark = {
     1: offblack.D1,
     2: offblack.base,
     3: offblack.D1,
-    4: offblack.D7,
+    4: offblack.D7
   },
   secondary: {
     base: blue.L10,
     1: blue.L95,
     2: blue.L9,
     3: blue.L8,
-    4: blue.L5,
-  },
+    4: blue.L5
+  }
 };
 
 export const accents = {
   accent: {
     base: blue.base,
     1: blue.D2,
-    2: blue.L5,
+    2: blue.L5
   },
   good: {
     base: green.base,
     1: green.D1,
-    2: green.L5,
+    2: green.L5
   },
   aware: {
     base: yellow.base,
     1: yellow.D1,
-    2: yellow.L5,
+    2: yellow.L5
   },
   bad: {
     base: red.base,
     1: red.D1,
-    2: red.L5,
-  },
+    2: red.L5
+  }
 };
 
 export const unique = {
   tradingSell: red.base,
-  tradingBuy: blue.base,
+  tradingBuy: blue.base
 };
 
 export const palettes = {
@@ -123,18 +123,18 @@ export const palettes = {
     red,
     green,
     yellow,
-    blue,
+    blue
   },
   accents,
   light,
-  dark,
+  dark
 };
 
 export const colors = flatten({
   ...palettes.spectrum,
   ...palettes.accents,
   light: flatten(light),
-  dark: flatten(dark),
+  dark: flatten(dark)
 });
 
 console.log({ palettes, colors });
@@ -155,7 +155,7 @@ function flatten(colorSets) {
         acc[_.camelCase(`${name}_${level}`)] = value;
 
         // add `color` for `100`
-        if (level === '100' || level === 'base') {
+        if (level === "100" || level === "base") {
           acc[name] = value;
         }
       });
@@ -203,7 +203,7 @@ function createPalette({
     // }, {}),
 
     // … overrides?
-    ...overrides,
+    ...overrides
   };
 }
 

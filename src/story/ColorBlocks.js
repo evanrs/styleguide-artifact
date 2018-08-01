@@ -16,37 +16,46 @@ const ColorBlocks = props => {
         (swatchSetGroup, i) => (
           <SwatchSetGroup key={i}>
             {_.map(swatchSetGroup, (color, name) => {
-              const { base, light, dark, unknown } = sort(color);
+              let { base, light, dark, unknown } = sort(color);
+              console.log(base, light, dark);
+              light = _.values(light).reverse();
+              dark = _.values(dark);
+              const set = [...light, { color: base }, ...dark];
 
               return (
                 <SwatchSet key={name}>
-                  <SwatchGroup>
-                    {_.values(light)
-                      .reverse()
-                      .map(({ color, name }, key) => {
-                        return (
-                          <Swatch key={name} backgroundColor={color}>
-                            <SwatchName>{name}</SwatchName>
-                          </Swatch>
-                        );
-                      })}
+                  <SwatchGroup glow={base}>
+                    {light.map(({ color, name }, index) => {
+                      const {
+                        [index + 4]: text = { color: 'transparent' },
+                      } = set;
+
+                      return (
+                        <Swatch key={name} backgroundColor={color}>
+                          <SwatchLevel color={text.color}>{name}</SwatchLevel>
+                        </Swatch>
+                      );
+                    })}
                   </SwatchGroup>
 
-                  <Block p={1} />
-
-                  <SwatchGroup>
+                  <SwatchGroup py={2}>
                     <Swatch backgroundColor={base}>
                       <SwatchName>{name}</SwatchName>
                       <SwatchValue>{base}</SwatchValue>
                     </Swatch>
                   </SwatchGroup>
 
-                  <Block p={1} />
-                  <SwatchGroup>
-                    {_.map(dark, ({ color, name }, key) => {
+                  <SwatchGroup glow={base}>
+                    {dark.map(({ color, name }, index) => {
+                      const {
+                        [dark.length + index - 4]: text = {
+                          color: 'transparent',
+                        },
+                      } = set;
+
                       return (
                         <Swatch key={name} backgroundColor={color}>
-                          <SwatchName>{name}</SwatchName>
+                          <SwatchLevel color={text.color}>{name}</SwatchLevel>
                         </Swatch>
                       );
                     })}
@@ -66,11 +75,19 @@ const SwatchName = styled.div`
   font-weight: bold;
   font-size: 0.825rem;
   text-transform: capitalize;
+  ${mapp({
+    color: color => `color: ${color}`,
+  })};
 `;
 
-const SwatchValue = styled.div`
+const SwatchValue = styled(SwatchName)`
   font-size: 0.875rem;
+  font-weight: 400;
   text-transform: uppercase;
+`;
+
+const SwatchLevel = styled(SwatchName)`
+  font-size: 0.75rem;
 `;
 
 const Swatch = styled(Block).attrs({ px: 2 })`
@@ -84,20 +101,61 @@ const Swatch = styled(Block).attrs({ px: 2 })`
   max-width: 7rem;
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.85);
+
+  ${mapp({
+    backgroundColor: {
+      ..._.mapValues(
+        colors,
+        color =>
+          css`
+            background-color: ${color};
+          `
+      ),
+      default: (color, key, { theme }) => {
+        return css`
+          background-color: ${color};
+        `;
+      },
+    },
+  })};
 `;
 
 const SwatchGroup = styled(Block)`
   ${Swatch}:first-of-type {
-    border-radius: 0.5rem 0.5rem 0 0;
+    border-radius: 0.75rem 0.75rem 0 0;
   }
 
   ${Swatch}:last-of-type {
-    border-radius: 0 0 0.5rem 0.5rem;
+    border-radius: 0 0 0.75rem 0.75rem;
   }
 
   ${Swatch}:first-of-type:last-of-type {
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
   }
+
+  ${true
+    ? null
+    : mapp({
+        glow: glow => {
+          return css`
+            position: relative;
+            margin-left: 2px;
+
+            &::before {
+              display: block;
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              box-shadow: 0 0 0 2px ${glow};
+              border-radius: 0.625rem;
+              opacity: 0.1;
+            }
+          `;
+        },
+      })};
 `;
 
 const SwatchSet = styled(Block)`
@@ -108,7 +166,7 @@ const SwatchSetGroup = styled(Block)`
   display: grid;
   height: 100%;
 
-  grid-column-gap: 0.25rem;
+  grid-column-gap: 0.5rem;
   ${({ children }) => css`
     grid-template-columns: repeat(${children.length || 1}, 1fr);
   `};

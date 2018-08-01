@@ -1,31 +1,25 @@
 import _ from 'lodash';
 import styled, { css } from 'styled-components';
+import mapp from '@evanrs/map-props';
 
 import { colors } from '../theme/colors';
+import { resolvesColor } from '../theme/tools';
 
-import mapp from '@evanrs/map-props';
 import { userSelectButton, mapMarginPaddingProps } from './rules';
 
 export const Block = styled.div`
   ${({ to, href, onClick, onTouchTap }) =>
     (to || href || onClick || onTouchTap) && userSelectButton};
 
-  ${mapp({
-    backgroundColor: {
-      ..._.mapValues(
-        colors,
-        color =>
-          css`
-            background-color: ${color};
-          `
-      ),
-      default: (color, key, { theme }) => {
-        return css`
-          background-color: ${color};
-        `;
-      },
-    },
+  transition: background-color ease-out 0.15s;
 
+  background-color: ${({ backgroundColor, theme }) =>
+    resolvesColor(backgroundColor, 'backgroundColor')({ theme })};
+
+  color: ${({ textColor, theme }) =>
+    resolvesColor(textColor, 'textColor')({ theme })};
+
+  ${mapp({
     width: {
       auto: css`
         width: auto;

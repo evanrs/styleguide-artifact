@@ -23,7 +23,7 @@ export const userSelectNone = css`
 `;
 
 export const userSelectButton = css`
-  -webkit-touch-callout: ${colors.primaryA5};
+  -webkit-touch-callout: rgba(0, 0, 0, 0.05);
   touch-callout: none;
 
   -webkit-user-drag: none;
@@ -33,6 +33,13 @@ export const userSelectButton = css`
   user-select: none;
 
   cursor: pointer;
+
+  ${({ disabled }) =>
+    disabled === true
+      ? css`
+          cursor: default;
+        `
+      : ''};
 `;
 
 export const touchScroll = css`
