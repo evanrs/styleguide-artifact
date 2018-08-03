@@ -21,7 +21,6 @@ export default class App extends React.Component {
 
   state = {
     themeName: 'light',
-    themeName: 'dark',
   };
 
   switchTheme = () =>

@@ -41,8 +41,10 @@ export const Section = styled(Block).attrs({ px: 3 })`
       : '';
   }};
 `;
+
 export const SectionBody = styled.div`
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
   max-width: 60rem;
 `;
@@ -61,21 +63,18 @@ export class SectionBlock extends React.Component {
 
     return (
       <Section {...props}>
-        <SectionBody>{children}</SectionBody>
+        <div>
+          <SectionBody>{children}</SectionBody>
+        </div>
       </Section>
     );
   }
 }
 
-// export const SectionBlock = ({ children, ...props }) => (
-//   <Section {...props}>
-//     <SectionBody>{children}</SectionBody>
-//   </Section>
-// );
-
 export const Root = styled.div`
-  ${Section} + ${Section} {
+  ${Section} + ${Section} ${SectionBody} {
     margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -86,4 +85,30 @@ export const Header = styled.div`
   font-weight: 500;
   font-size: 24px;
   letter-spacing: 0;
+`;
+
+export const NumberedLayout = styled(({ number, children, ...props }) => (
+  <div {...props}>
+    <SectionNumber>{number}</SectionNumber>
+    <div>{children}</div>
+  </div>
+))`
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+`;
+
+export const SectionNumber = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  min-height: 3.5rem;
+  max-height: 3.5rem;
+  min-width: 3.5rem;
+  max-width: 3.5rem;
+
+  font-size: 1.5rem;
+
+  color: ${resolvesColor('secondary[2]')};
+  box-shadow: 0 0 0 0.125rem ${resolvesColor('secondary[2]')};
 `;
