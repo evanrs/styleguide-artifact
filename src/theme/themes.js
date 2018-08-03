@@ -73,11 +73,3 @@ function createTheme({ primary, secondary }, accents, overrides) {
     overrides
   );
 }
-
-function createAccent(accent) {
-  return {
-    dark: accent[1],
-    light: accent[2],
-    ...accent,
-  };
-}

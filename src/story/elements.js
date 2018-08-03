@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { colors } from '../theme';
 
-import Block from '../styled/Block';
+import { colors } from '../theme';
 import { resolvesColor } from '../theme/tools';
+import Block from '../styled/Block';
 
 export const Column = styled.div`
   display: flex;
@@ -48,9 +48,9 @@ export const SectionBody = styled.div`
 `;
 
 export class SectionBlock extends React.Component {
-  state = {}
+  state = {};
   componentDidCatch() {
-    this.setState({ error: true })
+    this.setState({ error: true });
   }
 
   render() {
@@ -63,7 +63,7 @@ export class SectionBlock extends React.Component {
       <Section {...props}>
         <SectionBody>{children}</SectionBody>
       </Section>
-    )
+    );
   }
 }
 

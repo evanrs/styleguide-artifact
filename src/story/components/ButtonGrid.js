@@ -3,8 +3,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-import Button, { ButtonGroup } from '../styled/ButtonAlt';
-import { resolvesColor } from '../theme/tools';
+import Button, { ButtonGroup } from '../../styled/Button';
+import { resolvesColor } from '../../theme/tools';
 
 export default class ButtonGrid extends React.Component {
   state = {};

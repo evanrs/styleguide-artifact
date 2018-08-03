@@ -10,7 +10,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@evanrs/map-props": "^1.0.1",
+    "@evanrs/map-props": "^1.1.0",
     "lodash": "^4.17.10",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
@@ -18,7 +18,10 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
+    "react-switch": "^3.0.4",
+    "recompose": "^0.28.1",
     "ress": "^1.2.2",
+    "serve": "^9.4.0",
     "styled-components": "^3.3.3",
     "typeface-lato": "0.0.54",
     "typeface-montserrat": "0.0.54"

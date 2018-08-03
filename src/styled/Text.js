@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import mapProps from '@evanrs/map-props';
 
 import { resolvesColor } from '../theme/tools';
-import { userSelectButton, mapMarginPaddingProps } from '../styled/rules';
+import { userSelectButton, mapMarginPaddingProps } from '../../styled/rules';
 
 import Block from './Block';
 import ColorBlock from './ColorBlock';

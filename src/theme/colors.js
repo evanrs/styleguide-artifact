@@ -62,7 +62,6 @@ export const light = {
   secondary: {
     base: offblack.base,
     1: offblack.L1,
-    // 2: offblack.L25,
     2: mix(0.25, WHITE, offblack.base),
     3: offblack.D4,
     4: offblack.L5,

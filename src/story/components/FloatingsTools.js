@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { MDXProvider } from '@mdx-js/tag';
 import Switch from 'react-switch';
 
-import { colors, palettes } from '../theme/colors';
+import { colors, palettes } from '../../theme/colors';
 
-import Block from '../styled/Block';
+import Block from '../../styled/Block';
 
 export default ({ themeName, switchTheme }) => {
   const isDark = themeName === 'dark';

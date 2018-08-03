@@ -3,8 +3,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import mapp from '@evanrs/map-props';
 
-import { palettes, colors } from '../theme/colors';
-import Block from '../styled/Block';
+import { palettes, colors } from '../../theme/colors';
+import Block from '../../styled/Block';
 
 const { spectrum, accents, light, dark } = palettes;
 

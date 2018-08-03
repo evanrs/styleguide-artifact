@@ -2,19 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { MDXProvider } from '@mdx-js/tag';
 
-import Shadow from './Shadow';
-
-import Block from '../styled/Block';
-import ColorBlock from '../styled/ColorBlock';
-import * as headermdx from './header.mdx';
-import * as buttonsmdx from './buttons.mdx';
-import * as atomsmdx from './atoms.mdx';
-import * as swatchesmdx from './swatches.mdx';
-import * as footermdx from './footer.mdx';
-
-import FloatingTools from './FloatingsTools';
-
 import { Root, Header, SectionBlock } from './elements';
+import FloatingTools from './components/FloatingsTools';
+
+import * as headerMDX from './sections/header.mdx';
+import * as swatchesMDX from './sections/swatches.mdx';
+import * as atomsMDX from './sections/atoms.mdx';
+import * as footerMDX from './sections/footer.mdx';
 
 export const components = {
   wrapper: React.Fragment,
@@ -54,11 +48,10 @@ export default props => {
     <MDXProvider components={components}>
       <Root>
         <FloatingTools {...props} />
-        <MDX {...headermdx} />
-        <MDX {...swatchesmdx} />
-        <MDX {...atomsmdx} />
-        {/* <MDX {...buttonsmdx} /> */}
-        <MDX {...footermdx} />
+        <MDX {...headerMDX} />
+        <MDX {...swatchesMDX} />
+        <MDX {...atomsMDX} />
+        <MDX {...footerMDX} />
       </Root>
     </MDXProvider>
   );
