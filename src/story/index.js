@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MDXProvider } from '@mdx-js/tag';
-import Switch from 'react-switch';
+
+import Shadow from './Shadow';
 
 import Block from '../styled/Block';
 import ColorBlock from '../styled/ColorBlock';
 import * as headermdx from './header.mdx';
 import * as buttonsmdx from './buttons.mdx';
+import * as atomsmdx from './atoms.mdx';
 import * as swatchesmdx from './swatches.mdx';
 import * as footermdx from './footer.mdx';
 
@@ -15,6 +17,7 @@ import FloatingTools from './FloatingsTools';
 import { Root, Header, SectionBlock } from './elements';
 
 export const components = {
+  wrapper: React.Fragment,
   h1: styled(Header)`
     line-height: 3rem;
     font-size: 2.25rem;
@@ -50,10 +53,11 @@ export default props => {
   return (
     <MDXProvider components={components}>
       <Root>
-        <MDX {...headermdx} />
         <FloatingTools {...props} />
-        <MDX {...buttonsmdx} />
+        <MDX {...headermdx} />
         <MDX {...swatchesmdx} />
+        <MDX {...atomsmdx} />
+        {/* <MDX {...buttonsmdx} /> */}
         <MDX {...footermdx} />
       </Root>
     </MDXProvider>

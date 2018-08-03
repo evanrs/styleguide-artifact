@@ -16,6 +16,13 @@ body {
   text-rendering: geometricPrecision;
 }
 
+@media all and (max-width: 720px) {
+  :root,
+  body {
+    font-size: 12px;
+  }
+}
+
 #root {
   height: 100%;
 }

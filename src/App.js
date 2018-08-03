@@ -1,13 +1,27 @@
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { themes } from './theme';
 
-import { ThemeProvider } from './theme';
 import Block from './styled/Block';
 import Story from './story';
 
 export default class App extends React.Component {
+  static getDerivedStateFromProps(
+    props,
+    { themeName, [themeName]: nextTheme }
+  ) {
+    if (nextTheme && nextTheme.name === themeName) {
+      return null;
+    }
+
+    return {
+      [themeName]: themes[themeName],
+    };
+  }
+
   state = {
     themeName: 'light',
+    themeName: 'dark',
   };
 
   switchTheme = () =>
@@ -15,17 +29,11 @@ export default class App extends React.Component {
       themeName: themeName === 'light' ? 'dark' : 'light',
     }));
 
-  interval = true || setInterval(this.switchType, 5000);
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   render() {
-    const { themeName } = this.state;
+    const { themeName, [themeName]: currentTheme } = this.state;
 
     return (
-      <ThemeProvider type={themeName}>
+      <ThemeProvider theme={currentTheme}>
         <Root>
           <Story themeName={themeName} switchTheme={this.switchTheme} />
         </Root>
@@ -36,38 +44,4 @@ export default class App extends React.Component {
 
 export const Root = styled(Block)`
   min-height: 100%;
-`;
-
-const SectionHeader = styled.h2`
-  margin: 1rem 0;
-
-  min-width: 100%;
-`;
-
-const Section = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-flow: row wrap;
-  width: 100%;
-  height: max-content;
-  min-height: 100%;
-  padding: 0 2rem;
-  margin: 2rem 0;
-  overflow: hidden;
-`;
-
-const Column = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-flow: column wrap;
-  width: 100%;
-  height: max-content;
-  min-height: 100%;
-  overflow: hidden;
-`;
-
-const EmojiText = styled.span`
-  font-size: 3rem;
 `;

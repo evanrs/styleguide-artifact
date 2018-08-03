@@ -17,7 +17,7 @@ const ColorBlocks = props => {
           <SwatchSetGroup key={i}>
             {_.map(swatchSetGroup, (color, name) => {
               let { base, light, dark, unknown } = sort(color);
-              console.log(base, light, dark);
+
               light = _.values(light).reverse();
               dark = _.values(dark);
               const set = [...light, { color: base }, ...dark];

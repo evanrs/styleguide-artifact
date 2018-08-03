@@ -1,22 +1,10 @@
 import _ from 'lodash';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { colors } from '../theme';
 
 import Block from '../styled/Block';
 import { resolvesColor } from '../theme/tools';
-
-export const Section = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-flow: row wrap;
-  width: 100%;
-  height: max-content;
-  min-height: 100%;
-  padding: 0 2rem;
-  margin: 2rem 0;
-  overflow: hidden;
-`;
 
 export const Column = styled.div`
   display: flex;
@@ -29,7 +17,14 @@ export const Column = styled.div`
   overflow: hidden;
 `;
 
-export const SectionBlock = styled(Block)`
+export const Section = styled(Block).attrs({ px: 3 })`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  min-height: ${({ mh = 4 }) => mh * 5}rem;
+  margin: 0;
+
   background-color: ${({ backgroundColor: color, theme }) => {
     color = color === true ? 'backgroundColor' : color;
 
@@ -45,18 +40,41 @@ export const SectionBlock = styled(Block)`
       ? theme[color] || theme.colors[color] || _.get(theme, color)
       : '';
   }};
-
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-
-  min-height: 20rem;
-  margin: 0;
-  padding: 0 2rem;
+`;
+export const SectionBody = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 60rem;
 `;
 
+export class SectionBlock extends React.Component {
+  state = {}
+  componentDidCatch() {
+    this.setState({ error: true })
+  }
+
+  render() {
+    const { children, ...props } = this.props;
+    if (this.state.error) {
+      return <div>oopsies</div>;
+    }
+
+    return (
+      <Section {...props}>
+        <SectionBody>{children}</SectionBody>
+      </Section>
+    )
+  }
+}
+
+// export const SectionBlock = ({ children, ...props }) => (
+//   <Section {...props}>
+//     <SectionBody>{children}</SectionBody>
+//   </Section>
+// );
+
 export const Root = styled.div`
-  ${SectionBlock} + ${SectionBlock} {
+  ${Section} + ${Section} {
     margin-top: 2rem;
   }
 `;
@@ -69,5 +87,3 @@ export const Header = styled.div`
   font-size: 24px;
   letter-spacing: 0;
 `;
-
-export default SectionBlock;

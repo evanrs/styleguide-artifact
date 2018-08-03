@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import { mapProps, mapTheme } from '@evanrs/map-props';
 
-import { ThemeProvider, colors } from '../theme';
+import { colors } from '../theme';
 
 import { mapMarginPaddingProps } from './rules';
 

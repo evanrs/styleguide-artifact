@@ -13,30 +13,45 @@ export default ({ themeName, switchTheme }) => {
   const { primary, secondary } = palettes[themeName];
 
   return (
-    <FloatingTools px={3} py={1}>
-      <Label>Switch to {isDark ? 'Light' : 'Dark'} mode </Label>
-      <Switch
-        onChange={switchTheme}
-        checked={isDark}
-        onColor={primary[4]}
-        onHandleColor={primary[1]}
-        offColor={secondary.base}
-        offHandleColor={secondary[2]}
-        handleDiameter={18}
-        uncheckedIcon={false}
-        checkedIcon={false}
-        boxShadow={`0 .5px 1.5px 1px rgba(0, 0, 30, ${
-          isDark ? '0.25' : '0.25'
-        })`}
-        activeBoxShadow="0 1px 1.5px rgba(0, 0, 30, 0.25)"
-        height={12}
-        width={32}
-      />
-    </FloatingTools>
+    <Root>
+      <FloatingTools>
+        <Label>Switch to {isDark ? 'Light' : 'Dark'} mode </Label>
+        <Switch
+          className="switch"
+          onChange={switchTheme}
+          checked={isDark}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          height={12}
+          width={32}
+          handleDiameter={18}
+          // alternate
+          onColor={primary[4]}
+          onHandleColor={secondary[3]}
+          offColor={secondary[4]}
+          offHandleColor={secondary[3]}
+          boxShadow={`0 1px 2px 1px rgba(0, 0, 0, ${isDark ? '0.15' : '0.3'})`}
+          activeBoxShadow="0 0 0 4px rgba(0, 0, 30, 0.2)"
+          //
+          offColor={secondary[4]}
+          offHandleColor={secondary.base}
+          onColor={primary.base}
+          onHandleColor={primary[2]}
+        />
+      </FloatingTools>
+    </Root>
   );
 };
 
+const Root = styled(Block).attrs({
+  backgroundColor: 'primary.2',
+})`
+  /* min-height: 2.5rem;
+  max-height: 2.5rem; */
+`;
+
 const FloatingTools = styled(Block).attrs({
+  px: 3,
   backgroundColor: 'primary.1',
   textColor: 'secondary.3',
 })`
@@ -49,6 +64,8 @@ const FloatingTools = styled(Block).attrs({
   right: 0;
   z-index: 100;
   opacity: 0.85;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
 `;
 
 const Label = styled.label`
