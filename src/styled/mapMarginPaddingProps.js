@@ -2,34 +2,6 @@ import _ from 'lodash';
 import styled, { css } from 'styled-components';
 import mapp from '@evanrs/map-props';
 
-import rem from '../theme/rem';
-import media from '../theme/media';
-
-export const viewportPadding = css`
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  @media ${media.mobile.s.gt} {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  @media ${media.mobile.gte} {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  @media ${media.tablet.gte} {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
-  @media ${media.desktop.gte} {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-`;
-
 export const { marginPaddingProps, mapMarginPaddingProps } = (() => {
   const [margin, padding] = ['margin', 'padding'].map(prop =>
     [
@@ -48,7 +20,7 @@ export const { marginPaddingProps, mapMarginPaddingProps } = (() => {
           ${variants.map(
             variant =>
               css`
-                ${prop + '-' + variant}: ${rem(value)};
+                ${prop + '-' + variant}: ${value}rem;
               `
           )};
         `;
@@ -60,8 +32,6 @@ export const { marginPaddingProps, mapMarginPaddingProps } = (() => {
       return acc;
     }, {})
   );
-
-  padding.px.viewport = viewportPadding;
 
   margin.mx.auto = css`
     margin-left: auto;

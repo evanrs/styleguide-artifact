@@ -41,12 +41,3 @@ export const resolvesColor = (color: selector, other: ?selector): resolver => {
     return value;
   };
 };
-
-export const rem = v => `${v}rem`;
-
-export const toBassNumber = value => {
-  value = Number(value);
-  // invariant(!_.isNan(value), `toBassNumber received NaN for ${value}`);
-
-  return value === 1 ? 0.5 : value > 1 ? value - 1 : value;
-};
